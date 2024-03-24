@@ -48,3 +48,21 @@ body {
 .menu-button:hover {
     background-color: #B22222;
 }
+
+.soul-card {
+    background-color: #222;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.soul-card h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.soul-card p {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
