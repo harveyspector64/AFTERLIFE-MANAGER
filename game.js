@@ -23,3 +23,18 @@ function startGame() {
     
     // TODO: Initialize the game state and begin the game loop
 }
+
+// Function to load a saved game
+function loadGame() {
+    // TODO: Implement the logic to load a saved game state
+    console.log('Loading game...');
+}
+
+// Function to open the settings menu
+function openSettings() {
+    // Hide the main menu and show the settings screen
+    mainMenu.style.display = 'none';
+    settingsScreen.style.display = 'block';
+    
+    // TODO: Implement the settings menu functionality
+}
