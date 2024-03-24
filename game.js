@@ -57,6 +57,10 @@ async function initializeGame() {
     }
     console.log('Soul cards generated:', soulCards);
 
+    // Display soul cards on the game screen
+    displaySoulCards(soulCards);
+}
+
 // Function to display soul cards on the game screen
 function displaySoulCards(soulCards) {
     soulCardContainer.innerHTML = '';
@@ -66,6 +70,7 @@ function displaySoulCards(soulCards) {
         soulCardElement.classList.add('soul-card');
         soulCardElement.innerHTML = `
             <h3>${soulCard.firstName} ${soulCard.lastName}</h3>
+            <p>Gender: ${soulCard.gender}</p>
             <p>Age: ${soulCard.age}</p>
             <p>Traits: ${soulCard.traits.join(', ')}</p>
             <p>Virtue: ${soulCard.virtue.name} (${soulCard.virtue.score})</p>
