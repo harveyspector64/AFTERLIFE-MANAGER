@@ -24,11 +24,6 @@ function generateSoulCard(traits, virtues, sins, maleFirstNames, femaleFirstName
 }
 
 // Function to generate ASCII art for a soul card
-function generateSoulCardASCII(soulCard) {
-    const wrapText = (text, maxWidth) => {
-        // ... (wrapText function implementation remains the same)
-    };
-
     const ascii = `
     ✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦
     ✧                                                                    ✧
