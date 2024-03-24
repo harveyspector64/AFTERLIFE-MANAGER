@@ -44,7 +44,7 @@ function generateSoulCardASCII(soulCard) {
         return lines.join('\n');
     };
 
-    const ascii = `
+       const ascii = `
     ✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦
     ✧                                                                    ✧
     ✦                                                                    ✦
