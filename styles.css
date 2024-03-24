@@ -66,3 +66,25 @@ body {
     font-size: 18px;
     margin-bottom: 5px;
 }
+
+.judgment-buttons {
+    margin-top: 20px;
+}
+
+.judgment-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: 'Cinzel', serif;
+    background-color: #8B0000;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s;
+}
+
+.judgment-button:hover {
+    background-color: #B22222;
+}
