@@ -80,14 +80,26 @@ function displaySoulCards(soulCards) {
     });
 
 // Add event listeners to judgment buttons
-const judgmentButtons = document.querySelectorAll('.judgment-button');
-judgmentButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        const realm = button.dataset.realm;
-        const soulCardElement = button.closest('.soul-card');
-        judgeSoul(soulCardElement, realm);
+    // Add event listeners to judgment buttons
+    const judgmentButtons = document.querySelectorAll('.judgment-button');
+    judgmentButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const realm = button.dataset.realm;
+            const soulCardElement = button.closest('.soul-card');
+            judgeSoul(soulCardElement, realm);
+
+            // Display judgment confirmation message
+            const soulName = soulCardElement.querySelector('pre').textContent.trim().split('\n')[3].trim();
+            const confirmationMessage = `
+            ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
+            ┃                                                                ┃
+            ┃      Soul ${soulName} has been sent to ${realm}!                 ┃
+            ┃                                                                ┃
+            ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+            `;
+            console.log(confirmationMessage);
+        });
     });
-});
 }
 
 // Function to judge a soul and send them to a realm
