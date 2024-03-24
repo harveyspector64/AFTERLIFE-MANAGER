@@ -6,6 +6,8 @@ const settingsScreen = document.getElementById('settings-screen');
 const startButton = document.getElementById('start-button');
 const loadButton = document.getElementById('load-button');
 const settingsButton = document.getElementById('settings-button');
+const soulCardContainer = document.getElementById('soul-card-container');
+const realmInfoContainer = document.getElementById('realm-info-container');
 
 // Show the main menu by default
 mainMenu.style.display = 'block';
@@ -22,6 +24,7 @@ function startGame() {
     gameScreen.style.display = 'block';
     
     // TODO: Initialize the game state and begin the game loop
+    initializeGame();
 }
 
 // Function to load a saved game
@@ -37,4 +40,10 @@ function openSettings() {
     settingsScreen.style.display = 'block';
     
     // TODO: Implement the settings menu functionality
+}
+
+// Function to initialize the game state
+function initializeGame() {
+    // TODO: Load game data, generate initial soul cards, and set up game loop
+    console.log('Initializing game...');
 }
