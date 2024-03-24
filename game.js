@@ -75,7 +75,38 @@ function displaySoulCards(soulCards) {
             <p>Traits: ${soulCard.traits.join(', ')}</p>
             <p>Virtue: ${soulCard.virtue.name} (${soulCard.virtue.score})</p>
             <p>Sin: ${soulCard.sin.name} (${soulCard.sin.score})</p>
+            <p>Total Karma: ${soulCard.totalKarma}</p>
+            <div class="judgment-buttons">
+                <button class="judgment-button" data-realm="Heaven">Heaven</button>
+                <button class="judgment-button" data-realm="Purgatory">Purgatory</button>
+                <button class="judgment-button" data-realm="Hell">Hell</button>
+            </div>
         `;
         soulCardContainer.appendChild(soulCardElement);
     });
+
+    // Add event listeners to judgment buttons
+    const judgmentButtons = document.querySelectorAll('.judgment-button');
+    judgmentButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const realm = button.dataset.realm;
+            const soulCard = button.closest('.soul-card');
+            judgeSoul(soulCard, realm);
+        });
+    });
+}
+
+// Function to judge a soul and send them to a realm
+function judgeSoul(soulCard, realm) {
+    console.log(`Judging soul: ${soulCard.querySelector('h3').textContent}`);
+    console.log(`Sending soul to ${realm}`);
+
+    // TODO: Update the game state based on the judgment
+    // - Remove the judged soul card from the list
+    // - Update the realm's population and karma balance
+    // - Check for any realm-specific events or consequences
+    // - Proceed to the next soul card or end the judgment phase
+
+    // For now, let's just remove the judged soul card
+    soulCard.remove();
 }
