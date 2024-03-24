@@ -107,17 +107,17 @@ function displaySoulCards(soulCards) {
             judgeSoul(soulCardElement, realm);
 
             // Display judgment confirmation message
-            const soulName = soulCardElement.querySelector('pre').textContent.trim().split('\n')[3].trim();
+            const soulName = soulCardElement.querySelector('pre').textContent.trim().split('\n')[6].trim();
             const confirmationMessage = `
-            ✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
-            ✦                                                    ✦
-            ✧  The soul of ${soulName} has been judged           ✧
-            ✦  and sentenced to the realm of ${realm}.           ✦
-            ✧                                                    ✧
-            ✦  May their eternal fate be sealed in the           ✦
-            ✧  annals of the cosmic tapestry.                    ✧
-            ✦                                                    ✦
-            ✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
+            ┌────────────────────────────────────────────────────┐
+            │                                                    │
+            │  The soul of ${soulName} has been judged           │
+            │  and sentenced to the realm of ${realm}.           │
+            │                                                    │
+            │  May their eternal fate be sealed in the           │
+            │  annals of the cosmic tapestry.                    │
+            │                                                    │
+            └────────────────────────────────────────────────────┘
             `;
 
             const confirmationElement = document.createElement('div');
