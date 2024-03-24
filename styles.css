@@ -51,24 +51,19 @@ body {
 
 .soul-card {
     background-color: #000;
-    color: #0f0;
+    color: #FFC300;
     font-family: monospace;
     white-space: pre;
     padding: 10px;
     margin-bottom: 20px;
 }
 
-.judgment-buttons {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 10px;
-}
-
 .judgment-button {
     cursor: pointer;
     user-select: none;
+    color: #FF5733;
 }
 
 .judgment-button:hover {
-    color: #ff0;
+    color: #C70039;
 }
