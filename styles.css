@@ -116,6 +116,6 @@ body {
     overflow-wrap: break-word;
     word-wrap: break-word;
     hyphens: auto;
-    text-align: center;
+    text-align: left;
     border: 2px solid #0f0;
 }
