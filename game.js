@@ -79,15 +79,15 @@ function displaySoulCards(soulCards) {
         soulCardContainer.appendChild(soulCardElement);
     });
 
-    // Add event listeners to judgment buttons
-    const judgmentButtons = document.querySelectorAll('.judgment-button');
-    judgmentButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const realm = button.dataset.realm;
-            const soulCard = button.closest('.soul-card');
-            judgeSoul(soulCard, realm);
-        });
+// Add event listeners to judgment buttons
+const judgmentButtons = document.querySelectorAll('.judgment-button');
+judgmentButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const realm = button.dataset.realm;
+        const soulCardElement = button.closest('.soul-card');
+        judgeSoul(soulCardElement, realm);
     });
+});
 }
 
 // Function to judge a soul and send them to a realm
