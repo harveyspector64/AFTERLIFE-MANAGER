@@ -9,15 +9,18 @@
 <body>
     <div id="game-container">
         <div id="main-menu" class="screen">
-            <h1>Afterlife Manager</h1>
-            <button id="start-button">New Game</button>
-            <button id="load-button">Load Game</button>
-            <button id="settings-button">Settings</button>
+            <h1 class="game-title">Afterlife Manager</h1>
+            <p class="game-description">Welcome, Divine Judge. Your task is to maintain the balance of the afterlife realms by judging the souls of the deceased.</p>
+            <button id="start-button" class="menu-button">Begin Judgment</button>
+            <button id="load-button" class="menu-button">Load Game</button>
+            <button id="settings-button" class="menu-button">Settings</button>
         </div>
         <div id="game-screen" class="screen">
-            <!-- Game content will be dynamically added here -->
+            <div id="soul-card-container"></div>
+            <div id="realm-info-container"></div>
         </div>
         <div id="settings-screen" class="screen">
+            <h2>Settings</h2>
             <!-- Settings menu content will be added here -->
         </div>
     </div>
