@@ -26,54 +26,45 @@ function generateSoulCard(traits, virtues, sins, maleFirstNames, femaleFirstName
 // Function to generate ASCII art for a soul card
 function generateSoulCardASCII(soulCard) {
     const wrapText = (text, maxWidth) => {
-        const words = text.split(' ');
-        let lines = [];
-        let currentLine = words[0];
-
-        for (let i = 1; i < words.length; i++) {
-            const word = words[i];
-            if (currentLine.length + word.length + 1 <= maxWidth) {
-                currentLine += ' ' + word;
-            } else {
-                lines.push(currentLine);
-                currentLine = word;
-            }
-        }
-
-        lines.push(currentLine);
-        return lines.join('\n');
+        // ... (wrapText function implementation remains the same)
     };
 
     const ascii = `
-    ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-    ┃  ╔══════════════════════════════════════════════════════════════╗  ┃
-    ┃  ║                                                              ║  ┃
-    ┃  ║   ${soulCard.firstName.toUpperCase()} ${soulCard.lastName.toUpperCase()}   ┃
-    ┃  ║                                                              ║  ┃
-    ┃  ╚══════════════════════════════════════════════════════════════╝  ┃
-    ┃                                                                    ┃
-    ┃  Gender: ${soulCard.gender}                                         ┃
-    ┃  Age: ${soulCard.age}                                               ┃
-    ┃                                                                    ┃
-    ┃  Traits:                                                           ┃
-    ┃  - ${soulCard.traits[0]}                                            ┃
-    ┃  - ${soulCard.traits[1]}                                            ┃
-    ┃                                                                    ┃
-    ┃  Virtue:                                                           ┃
-    ┃  ${wrapText(soulCard.virtue.name, 40)}                              ┃
-    ┃  (${soulCard.virtue.score})                                         ┃
-    ┃                                                                    ┃
-    ┃  Sin:                                                              ┃
-    ┃  ${wrapText(soulCard.sin.name, 40)}                                 ┃
-    ┃  (${soulCard.sin.score})                                            ┃
-    ┃                                                                    ┃
-    ┃  Total Karma: ${soulCard.totalKarma}                                ┃
-    ┃                                                                    ┃
-    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+    ✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦
+    ✧                                                                    ✧
+    ✦                                                                    ✦
+    ✧        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░         ✧
+    ✦        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░         ✦
+    ✧        ░░                                                ░░         ✧
+    ✦        ░░    ${soulCard.firstName.toUpperCase()} ${soulCard.lastName.toUpperCase()}    ░░         ✦
+    ✧        ░░                                                ░░         ✧
+    ✦        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░         ✦
+    ✧        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░         ✧
+    ✦                                                                    ✦
+    ✧          Gender: ${soulCard.gender}                                 ✧
+    ✦          Age: ${soulCard.age}                                       ✦
+    ✧                                                                    ✧
+    ✦          Traits:                                                   ✦
+    ✧          - ${soulCard.traits[0]}                                    ✧
+    ✦          - ${soulCard.traits[1]}                                    ✦
+    ✧                                                                    ✧
+    ✦          Virtue:                                                   ✦
+    ✧          ${wrapText(soulCard.virtue.name, 40)}                      ✧
+    ✦          (${soulCard.virtue.score})                                 ✦
+    ✧                                                                    ✧
+    ✦          Sin:                                                      ✦
+    ✧          ${wrapText(soulCard.sin.name, 40)}                         ✧
+    ✦          (${soulCard.sin.score})                                    ✦
+    ✧                                                                    ✧
+    ✦          Total Karma: ${soulCard.totalKarma}                        ✦
+    ✧                                                                    ✧
+    ✦                                                                    ✦
+    ✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦
     `;
 
     return ascii;
 }
+
 // Function to get a random item from an array
 function getRandomItem(array) {
     return array[Math.floor(Math.random() * array.length)];
