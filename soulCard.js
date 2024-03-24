@@ -9,6 +9,8 @@ function generateSoulCard(traits, virtues, sins, maleFirstNames, femaleFirstName
     const virtue = getRandomItem(virtues);
     const sin = getRandomItem(sins);
 
+    const totalKarma = virtue.score + sin.score;
+
     return {
         firstName,
         lastName,
@@ -16,7 +18,8 @@ function generateSoulCard(traits, virtues, sins, maleFirstNames, femaleFirstName
         age,
         traits: [trait1, trait2],
         virtue,
-        sin
+        sin,
+        totalKarma
     };
 }
 
