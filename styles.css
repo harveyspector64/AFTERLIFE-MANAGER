@@ -68,7 +68,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #000;
-    color: #FFC300;
+    color: #0f0;
     font-family: monospace;
     white-space: pre-wrap;
     padding: 10px;
@@ -79,6 +79,7 @@ body {
     overflow-wrap: break-word;
     word-wrap: break-word;
     hyphens: auto;
+    text-align: center;
 }
 
 .overlay {
