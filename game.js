@@ -120,19 +120,15 @@ function displaySoulCards(soulCards) {
             ✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
             `;
 
-            const overlay = document.createElement('div');
-            overlay.classList.add('overlay');
-            overlay.innerHTML = `<pre>${confirmationMessage}</pre>`;
-            soulCardElement.appendChild(overlay);
+            const confirmationElement = document.createElement('div');
+            confirmationElement.classList.add('confirmation-message');
+            confirmationElement.innerHTML = `<pre>${confirmationMessage}</pre>`;
+            document.body.appendChild(confirmationElement);
 
-            // Add animation classes
-            soulCardElement.classList.add('fade-out');
-            overlay.classList.add('fade-in');
-
-            // Remove the soul card and overlay after the animation ends
+            // Remove the soul card and confirmation message after a delay
             setTimeout(() => {
                 soulCardElement.remove();
-                overlay.remove();
+                confirmationElement.remove();
             }, 2000);
         });
     });
