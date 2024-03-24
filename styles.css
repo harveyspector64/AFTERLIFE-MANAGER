@@ -53,9 +53,13 @@ body {
     background-color: #000;
     color: #FFC300;
     font-family: monospace;
-    white-space: pre;
+    white-space: pre-wrap;
     padding: 10px;
     margin-bottom: 20px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
 }
 
 .judgment-button {
