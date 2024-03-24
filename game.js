@@ -96,43 +96,41 @@ function displaySoulCards(soulCards) {
 
         soulCardElement.appendChild(buttonContainer);
         soulCardContainer.appendChild(soulCardElement);
-    });
 
-    // Add event listeners to judgment buttons
-    const judgmentButtons = document.querySelectorAll('.judgment-button');
-    judgmentButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const realm = button.dataset.realm;
-            const soulCardElement = button.closest('.soul-card');
-            judgeSoul(soulCardElement, realm);
+        // Add event listeners to judgment buttons
+        const judgmentButtons = soulCardElement.querySelectorAll('.judgment-button');
+        judgmentButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const realm = button.dataset.realm;
+                judgeSoul(soulCardElement, realm);
 
-            // Display judgment confirmation message
-            const soulName = soulCardElement.querySelector('pre').textContent.trim().split('\n')[6].trim();
-            const confirmationMessage = `
-            ┌────────────────────────────────────────────────────┐
-            │                                                    │
-            │      The soul of ${soulName} has been judged       │
-            │      and sentenced to the realm of ${realm}.       │
-            │                                                    │
-            │      ✧✦ May their eternal fate be sealed ✦✧       │
-            │         in the annals of cosmic justice.          │
-            │                                                    │
-            └────────────────────────────────────────────────────┘
-            `;
+                // Display judgment confirmation message
+                const soulName = soulCardElement.querySelector('pre').textContent.trim().split('\n')[6].trim();
+                const confirmationMessage = `
+                ┌────────────────────────────────────────────────────┐
+                │                                                    │
+                │      The soul of ${soulName} has been judged       │
+                │      and sentenced to the realm of ${realm}.       │
+                │                                                    │
+                │      ✧✦ May their eternal fate be sealed ✦✧       │
+                │         in the annals of cosmic justice.          │
+                │                                                    │
+                └────────────────────────────────────────────────────┘
+                `;
 
-            const confirmationElement = document.createElement('div');
-            confirmationElement.classList.add('confirmation-message');
-            confirmationElement.innerHTML = `<pre>${confirmationMessage}</pre>`;
-            soulCardElement.appendChild(confirmationElement);
+                const confirmationElement = document.createElement('div');
+                confirmationElement.classList.add('confirmation-message');
+                confirmationElement.innerHTML = `<pre>${confirmationMessage}</pre>`;
+                soulCardElement.appendChild(confirmationElement);
 
-            // Hide the judgment buttons
-            const buttonContainer = soulCardElement.querySelector('.judgment-buttons');
-            buttonContainer.style.display = 'none';
+                // Hide the judgment buttons
+                buttonContainer.style.display = 'none';
 
-            // Remove the soul card after a delay
-            setTimeout(() => {
-                soulCardElement.remove();
-            }, 2000);
+                // Remove the soul card after a delay
+                setTimeout(() => {
+                    soulCardElement.remove();
+                }, 2000);
+            });
         });
     });
 }
@@ -148,7 +146,4 @@ function judgeSoul(soulCardElement, realm) {
     // - Update the realm's population and karma balance
     // - Check for any realm-specific events or consequences
     // - Proceed to the next soul card or end the judgment phase
-
-    // For now, let's just remove the judged soul card
-    soulCardElement.remove();
 }
