@@ -120,8 +120,8 @@ function displaySoulCards(soulCards) {
             ✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
             `;
 
-            const buttonContainer = soulCardElement.querySelector('.judgment-buttons');
-            buttonContainer.innerHTML = `<pre>${confirmationMessage}</pre>`;
+            const soulCardContent = soulCardElement.querySelector('pre');
+            soulCardContent.innerHTML = confirmationMessage;
 
             // Remove the soul card after a delay
             setTimeout(() => {
