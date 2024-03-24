@@ -7,13 +7,13 @@ async function loadJSON(url) {
 // Load game data
 async function loadGameData() {
     const [traits, virtuesData, sinsData, realms, maleFirstNames, femaleFirstNames, lastNames] = await Promise.all([
-        loadJSON('AFTERLIFE-MANAGER/data/traits.json'),
-        loadJSON('AFTERLIFE-MANAGER/data/virtues.json'),
-        loadJSON('AFTERLIFE-MANAGER/data/sins.json'),
-        loadJSON('AFTERLIFE-MANAGER/data/realms.json'),
-        loadJSON('AFTERLIFE-MANAGER/data/maleFirstNames.json'),
-        loadJSON('AFTERLIFE-MANAGER/data/femaleFirstNames.json'),
-        loadJSON('AFTERLIFE-MANAGER/data/lastNames.json')
+        loadJSON('data/traits.json'),
+        loadJSON('data/virtues.json'),
+        loadJSON('data/sins.json'),
+        loadJSON('data/realms.json'),
+        loadJSON('data/maleFirstNames.json'),
+        loadJSON('data/femaleFirstNames.json'),
+        loadJSON('data/lastNames.json')
     ]);
 
     // Convert virtues and sins data to arrays of objects
