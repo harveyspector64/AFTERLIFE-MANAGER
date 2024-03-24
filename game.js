@@ -42,7 +42,6 @@ function openSettings() {
     // TODO: Implement the settings menu functionality
 }
 
-// Function to initialize the game state
 async function initializeGame() {
     console.log('Loading game data...');
     const gameData = await loadGameData();
@@ -56,7 +55,7 @@ async function initializeGame() {
         soulCards.push(soulCard);
     }
     console.log('Soul cards generated:', soulCards);
-
+    
     // Display soul cards on the game screen
     displaySoulCards(soulCards);
 }
