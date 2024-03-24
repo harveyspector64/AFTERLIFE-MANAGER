@@ -98,7 +98,7 @@ function displaySoulCards(soulCards) {
         soulCardContainer.appendChild(soulCardElement);
     });
 
-    // Add event listeners to judgment buttons
+     // Add event listeners to judgment buttons
     const judgmentButtons = document.querySelectorAll('.judgment-button');
     judgmentButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -120,12 +120,17 @@ function displaySoulCards(soulCards) {
             ✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
             `;
 
-            const soulCardContent = soulCardElement.querySelector('pre');
-            soulCardContent.innerHTML = confirmationMessage;
+            const confirmationElement = document.createElement('div');
+            confirmationElement.classList.add('confirmation-message');
+            confirmationElement.innerHTML = `<pre>${confirmationMessage}</pre>`;
+            soulCardElement.appendChild(confirmationElement);
+
+            // Remove the judgment buttons
+            const buttonContainer = soulCardElement.querySelector('.judgment-buttons');
+            buttonContainer.remove();
 
             // Remove the soul card after a delay
-            setTimeout(() => {
-                soulCardElement.remove();
+            setTimeout(() => {                soulCardElement.remove();
             }, 2000);
         });
     });
