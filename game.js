@@ -61,6 +61,7 @@ async function initializeGame() {
     displaySoulCards(soulCards);
 }
 
+// Function to display soul cards on the game screen
 function displaySoulCards(soulCards) {
     soulCardContainer.innerHTML = '';
 
@@ -75,19 +76,19 @@ function displaySoulCards(soulCards) {
         buttonContainer.classList.add('judgment-buttons');
 
         const heavenButton = document.createElement('button');
-        heavenButton.classList.add('judgment-button');
+        heavenButton.classList.add('judgment-button', 'heaven-button');
         heavenButton.dataset.realm = 'Heaven';
-        heavenButton.textContent = 'Heaven';
+        heavenButton.innerHTML = '<pre>[ Heaven ]</pre>';
 
         const purgatoryButton = document.createElement('button');
-        purgatoryButton.classList.add('judgment-button');
+        purgatoryButton.classList.add('judgment-button', 'purgatory-button');
         purgatoryButton.dataset.realm = 'Purgatory';
-        purgatoryButton.textContent = 'Purgatory';
+        purgatoryButton.innerHTML = '<pre>[ Purgatory ]</pre>';
 
         const hellButton = document.createElement('button');
-        hellButton.classList.add('judgment-button');
+        hellButton.classList.add('judgment-button', 'hell-button');
         hellButton.dataset.realm = 'Hell';
-        hellButton.textContent = 'Hell';
+        hellButton.innerHTML = '<pre>[ Hell ]</pre>';
 
         buttonContainer.appendChild(heavenButton);
         buttonContainer.appendChild(purgatoryButton);
