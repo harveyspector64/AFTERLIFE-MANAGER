@@ -18,13 +18,13 @@ loadButton.addEventListener('click', loadGame);
 settingsButton.addEventListener('click', openSettings);
 
 // Function to start a new game
-function startGame() {
+async function startGame() {
     // Hide the main menu and show the game screen
     mainMenu.style.display = 'none';
     gameScreen.style.display = 'block';
     
-    // TODO: Initialize the game state and begin the game loop
-    initializeGame();
+    // Initialize the game state and begin the game loop
+    await initializeGame();
 }
 
 // Function to load a saved game
@@ -43,7 +43,35 @@ function openSettings() {
 }
 
 // Function to initialize the game state
-function initializeGame() {
-    // TODO: Load game data, generate initial soul cards, and set up game loop
-    console.log('Initializing game...');
+async function initializeGame() {
+    const gameData = await loadGameData();
+    const { traits, virtues, sins, realms } = gameData;
+
+    // Generate initial soul cards
+    const soulCards = [];
+    for (let i = 0; i < 5; i++) {
+        const soulCard = generateSoulCard(traits, virtues, sins);
+        soulCards.push(soulCard);
+    }
+
+    // Display soul cards on the game screen
+    displaySoulCards(soulCards);
+}
+
+// Function to display soul cards on the game screen
+function displaySoulCards(soulCards) {
+    soulCardContainer.innerHTML = '';
+
+    soulCards.forEach(soulCard => {
+        const soulCardElement = document.createElement('div');
+        soulCardElement.classList.add('soul-card');
+        soulCardElement.innerHTML = `
+            <h3>${soulCard.firstName} ${soulCard.lastName}</h3>
+            <p>Age: ${soulCard.age}</p>
+            <p>Traits: ${soulCard.traits.join(', ')}</p>
+            <p>Virtue: ${soulCard.virtue.name} (${soulCard.virtue.score})</p>
+            <p>Sin: ${soulCard.sin.name} (${soulCard.sin.score})</p>
+        `;
+        soulCardContainer.appendChild(soulCardElement);
+    });
 }
