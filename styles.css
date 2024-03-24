@@ -62,6 +62,24 @@ body {
     max-width: 100%;
 }
 
+.confirmation-message {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #000;
+    color: #FFC300;
+    font-family: monospace;
+    white-space: pre-wrap;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    max-width: 300px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
 .judgment-button {
     cursor: pointer;
     user-select: none;
