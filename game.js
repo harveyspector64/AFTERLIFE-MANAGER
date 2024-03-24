@@ -108,7 +108,16 @@ function displaySoulCards(soulCards) {
             ✦                                                                  ✦
             ✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
             `;
-            console.log(confirmationMessage);
+
+            const confirmationElement = document.createElement('div');
+            confirmationElement.classList.add('confirmation-message');
+            confirmationElement.innerHTML = `<pre>${confirmationMessage}</pre>`;
+            soulCardContainer.appendChild(confirmationElement);
+
+            // Remove the confirmation message after a delay
+            setTimeout(() => {
+                confirmationElement.remove();
+            }, 3000);
         });
     });
 }
