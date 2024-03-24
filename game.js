@@ -42,6 +42,7 @@ function openSettings() {
     // TODO: Implement the settings menu functionality
 }
 
+// Function to initialize the game state
 async function initializeGame() {
     console.log('Loading game data...');
     const gameData = await loadGameData();
@@ -55,7 +56,7 @@ async function initializeGame() {
         soulCards.push(soulCard);
     }
     console.log('Soul cards generated:', soulCards);
-    
+
     // Display soul cards on the game screen
     displaySoulCards(soulCards);
 }
@@ -68,14 +69,7 @@ function displaySoulCards(soulCards) {
         const soulCardASCII = generateSoulCardASCII(soulCard);
         const soulCardElement = document.createElement('div');
         soulCardElement.classList.add('soul-card');
-        soulCardElement.innerHTML = `
-            <pre>${soulCardASCII}</pre>
-            <div class="judgment-buttons">
-                <pre class="judgment-button" data-realm="Heaven">[ Heaven ]</pre>
-                <pre class="judgment-button" data-realm="Purgatory">[ Purgatory ]</pre>
-                <pre class="judgment-button" data-realm="Hell">[ Hell ]</pre>
-            </div>
-        `;
+        soulCardElement.innerHTML = `<pre>${soulCardASCII}</pre>`;
         soulCardContainer.appendChild(soulCardElement);
     });
 
@@ -123,9 +117,8 @@ function displaySoulCards(soulCards) {
 }
 
 // Function to judge a soul and send them to a realm
-// Function to judge a soul and send them to a realm
 function judgeSoul(soulCardElement, realm) {
-    const soulName = soulCardElement.querySelector('pre').textContent.trim();
+    const soulName = soulCardElement.querySelector('pre').textContent.trim().split('\n')[6].trim();
     console.log(`Judging soul: ${soulName}`);
     console.log(`Sending soul to ${realm}`);
 
