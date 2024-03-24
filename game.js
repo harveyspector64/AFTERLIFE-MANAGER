@@ -120,15 +120,15 @@ function displaySoulCards(soulCards) {
             └────────────────────────────────────────────────────┘
             `;
 
-            const confirmationElement = document.createElement('div');
-            confirmationElement.classList.add('confirmation-message');
-            confirmationElement.innerHTML = `<pre>${confirmationMessage}</pre>`;
-            document.body.appendChild(confirmationElement);
+            const soulCardContent = soulCardElement.querySelector('pre');
+            const buttonContainer = soulCardElement.querySelector('.judgment-buttons');
 
-            // Remove the soul card and confirmation message after a delay
+            buttonContainer.style.display = 'none';
+            soulCardContent.innerHTML = confirmationMessage;
+
+            // Remove the soul card after a delay
             setTimeout(() => {
                 soulCardElement.remove();
-                confirmationElement.remove();
             }, 2000);
         });
     });
