@@ -66,20 +66,15 @@ function displaySoulCards(soulCards) {
     soulCardContainer.innerHTML = '';
 
     soulCards.forEach(soulCard => {
+        const soulCardASCII = generateSoulCardASCII(soulCard);
         const soulCardElement = document.createElement('div');
         soulCardElement.classList.add('soul-card');
         soulCardElement.innerHTML = `
-            <h3>${soulCard.firstName} ${soulCard.lastName}</h3>
-            <p>Gender: ${soulCard.gender}</p>
-            <p>Age: ${soulCard.age}</p>
-            <p>Traits: ${soulCard.traits.join(', ')}</p>
-            <p>Virtue: ${soulCard.virtue.name} (${soulCard.virtue.score})</p>
-            <p>Sin: ${soulCard.sin.name} (${soulCard.sin.score})</p>
-            <p>Total Karma: ${soulCard.totalKarma}</p>
+            <pre>${soulCardASCII}</pre>
             <div class="judgment-buttons">
-                <button class="judgment-button" data-realm="Heaven">Heaven</button>
-                <button class="judgment-button" data-realm="Purgatory">Purgatory</button>
-                <button class="judgment-button" data-realm="Hell">Hell</button>
+                <pre class="judgment-button" data-realm="Heaven">[ Heaven ]</pre>
+                <pre class="judgment-button" data-realm="Purgatory">[ Purgatory ]</pre>
+                <pre class="judgment-button" data-realm="Hell">[ Hell ]</pre>
             </div>
         `;
         soulCardContainer.appendChild(soulCardElement);
