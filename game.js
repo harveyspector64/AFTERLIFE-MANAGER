@@ -44,8 +44,10 @@ function openSettings() {
 
 // Function to initialize the game state
 async function initializeGame() {
+    console.log('Loading game data...');
     const gameData = await loadGameData();
     const { traits, virtues, sins, realms } = gameData;
+    console.log('Game data loaded:', gameData);
 
     // Generate initial soul cards
     const soulCards = [];
@@ -53,6 +55,7 @@ async function initializeGame() {
         const soulCard = generateSoulCard(traits, virtues, sins);
         soulCards.push(soulCard);
     }
+    console.log('Soul cards generated:', soulCards);
 
     // Display soul cards on the game screen
     displaySoulCards(soulCards);
