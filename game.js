@@ -107,31 +107,28 @@ function displaySoulCards(soulCards) {
             judgeSoul(soulCardElement, realm);
 
             // Display judgment confirmation message
-            const soulName = soulCardElement.querySelector('pre').textContent.trim().split('\n')[6].trim();
+            const soulName = soulCardElement.querySelector('pre').textContent.trim().split('\n')[3].trim();
             const confirmationMessage = `
-            ✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
-            ✦                                                                  ✦
-            ✧      In the grand cosmic tapestry of fate,                       ✧
-            ✦      the soul of ${soulName} has been judged.                    ✦
-            ✧      Their deeds, virtues, and sins have been weighed            ✧
-            ✦      upon the celestial scales of karmic balance.                ✦
-            ✧                                                                  ✧
-            ✦      By the divine decree of the Afterlife Manager,              ✦
-            ✧      this soul shall be consigned to the realm of ${realm}.      ✧
-            ✦                                                                  ✦
-            ✧      May their eternal journey be shaped by the                  ✧
-            ✦      consequences of their mortal actions.                       ✦
-            ✧                                                                  ✧
-            ✦      Let the cosmic wheels turn, and the soul's                  ✦
-            ✧      fate be sealed in the annals of eternity.                   ✧
-            ✦                                                                  ✦
-            ✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
+            ✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
+            ✦                                                    ✦
+            ✧  The soul of ${soulName} has been judged           ✧
+            ✦  and sentenced to the realm of ${realm}.           ✦
+            ✧                                                    ✧
+            ✦  May their eternal fate be sealed in the           ✦
+            ✧  annals of the cosmic tapestry.                    ✧
+            ✦                                                    ✦
+            ✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
             `;
 
             const confirmationElement = document.createElement('div');
             confirmationElement.classList.add('confirmation-message');
             confirmationElement.innerHTML = `<pre>${confirmationMessage}</pre>`;
-            soulCardContainer.appendChild(confirmationElement);
+            document.body.appendChild(confirmationElement);
+
+            // Position the confirmation message in the center of the screen
+            const rect = confirmationElement.getBoundingClientRect();
+            confirmationElement.style.top = `${window.innerHeight / 2 - rect.height / 2}px`;
+            confirmationElement.style.left = `${window.innerWidth / 2 - rect.width / 2}px`;
 
             // Remove the confirmation message after a delay
             setTimeout(() => {
