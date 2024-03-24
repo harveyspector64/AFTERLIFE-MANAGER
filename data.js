@@ -6,12 +6,16 @@ async function loadJSON(url) {
 
 // Load game data
 async function loadGameData() {
-    const [traits, virtues, sins, realms] = await Promise.all([
+    const [traits, virtuesData, sinsData, realms] = await Promise.all([
         loadJSON('data/traits.json'),
         loadJSON('data/virtues.json'),
         loadJSON('data/sins.json'),
         loadJSON('data/realms.json')
     ]);
+
+    // Convert virtues and sins data to arrays of objects
+    const virtues = Object.entries(virtuesData).map(([name, score]) => ({ name, score }));
+    const sins = Object.entries(sinsData).map(([name, score]) => ({ name, score }));
 
     return { traits, virtues, sins, realms };
 }
