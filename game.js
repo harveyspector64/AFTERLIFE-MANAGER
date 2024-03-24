@@ -79,7 +79,6 @@ function displaySoulCards(soulCards) {
         soulCardContainer.appendChild(soulCardElement);
     });
 
-// Add event listeners to judgment buttons
     // Add event listeners to judgment buttons
     const judgmentButtons = document.querySelectorAll('.judgment-button');
     judgmentButtons.forEach(button => {
@@ -89,13 +88,25 @@ function displaySoulCards(soulCards) {
             judgeSoul(soulCardElement, realm);
 
             // Display judgment confirmation message
-            const soulName = soulCardElement.querySelector('pre').textContent.trim().split('\n')[3].trim();
+            const soulName = soulCardElement.querySelector('pre').textContent.trim().split('\n')[6].trim();
             const confirmationMessage = `
-            ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-            ┃                                                                ┃
-            ┃      Soul ${soulName} has been sent to ${realm}!                 ┃
-            ┃                                                                ┃
-            ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+            ✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
+            ✦                                                                  ✦
+            ✧      In the grand cosmic tapestry of fate,                       ✧
+            ✦      the soul of ${soulName} has been judged.                    ✦
+            ✧      Their deeds, virtues, and sins have been weighed            ✧
+            ✦      upon the celestial scales of karmic balance.                ✦
+            ✧                                                                  ✧
+            ✦      By the divine decree of the Afterlife Manager,              ✦
+            ✧      this soul shall be consigned to the realm of ${realm}.      ✧
+            ✦                                                                  ✦
+            ✧      May their eternal journey be shaped by the                  ✧
+            ✦      consequences of their mortal actions.                       ✦
+            ✧                                                                  ✧
+            ✦      Let the cosmic wheels turn, and the soul's                  ✦
+            ✧      fate be sealed in the annals of eternity.                   ✧
+            ✦                                                                  ✦
+            ✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
             `;
             console.log(confirmationMessage);
         });
