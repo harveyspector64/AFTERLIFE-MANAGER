@@ -46,20 +46,16 @@ function openSettings() {
 async function initializeGame() {
     console.log('Loading game data...');
     const gameData = await loadGameData();
-    const { traits, virtues, sins, realms } = gameData;
+    const { traits, virtues, sins, realms, maleFirstNames, femaleFirstNames, lastNames } = gameData;
     console.log('Game data loaded:', gameData);
 
     // Generate initial soul cards
     const soulCards = [];
     for (let i = 0; i < 5; i++) {
-        const soulCard = generateSoulCard(traits, virtues, sins);
+        const soulCard = generateSoulCard(traits, virtues, sins, maleFirstNames, femaleFirstNames, lastNames);
         soulCards.push(soulCard);
     }
     console.log('Soul cards generated:', soulCards);
-
-    // Display soul cards on the game screen
-    displaySoulCards(soulCards);
-}
 
 // Function to display soul cards on the game screen
 function displaySoulCards(soulCards) {
