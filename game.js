@@ -111,20 +111,23 @@ function displaySoulCards(soulCards) {
             const confirmationMessage = `
             ┌────────────────────────────────────────────────────┐
             │                                                    │
-            │  The soul of ${soulName} has been judged           │
-            │  and sentenced to the realm of ${realm}.           │
+            │      The soul of ${soulName} has been judged       │
+            │      and sentenced to the realm of ${realm}.       │
             │                                                    │
-            │  May their eternal fate be sealed in the           │
-            │  annals of the cosmic tapestry.                    │
+            │      ✧✦ May their eternal fate be sealed ✦✧       │
+            │         in the annals of cosmic justice.          │
             │                                                    │
             └────────────────────────────────────────────────────┘
             `;
 
-            const soulCardContent = soulCardElement.querySelector('pre');
-            const buttonContainer = soulCardElement.querySelector('.judgment-buttons');
+            const confirmationElement = document.createElement('div');
+            confirmationElement.classList.add('confirmation-message');
+            confirmationElement.innerHTML = `<pre>${confirmationMessage}</pre>`;
+            soulCardElement.appendChild(confirmationElement);
 
+            // Hide the judgment buttons
+            const buttonContainer = soulCardElement.querySelector('.judgment-buttons');
             buttonContainer.style.display = 'none';
-            soulCardContent.innerHTML = confirmationMessage;
 
             // Remove the soul card after a delay
             setTimeout(() => {
