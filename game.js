@@ -91,8 +91,10 @@ function displaySoulCards(soulCards) {
 }
 
 // Function to judge a soul and send them to a realm
-function judgeSoul(soulCard, realm) {
-    console.log(`Judging soul: ${soulCard.querySelector('h3').textContent}`);
+// Function to judge a soul and send them to a realm
+function judgeSoul(soulCardElement, realm) {
+    const soulName = soulCardElement.querySelector('pre').textContent.trim();
+    console.log(`Judging soul: ${soulName}`);
     console.log(`Sending soul to ${realm}`);
 
     // TODO: Update the game state based on the judgment
@@ -102,5 +104,5 @@ function judgeSoul(soulCard, realm) {
     // - Proceed to the next soul card or end the judgment phase
 
     // For now, let's just remove the judged soul card
-    soulCard.remove();
+    soulCardElement.remove();
 }
