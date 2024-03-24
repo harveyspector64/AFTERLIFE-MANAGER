@@ -98,7 +98,7 @@ function displaySoulCards(soulCards) {
         soulCardContainer.appendChild(soulCardElement);
     });
 
-     // Add event listeners to judgment buttons
+    // Add event listeners to judgment buttons
     const judgmentButtons = document.querySelectorAll('.judgment-button');
     judgmentButtons.forEach(button => {
         button.addEventListener('click', () => {
@@ -120,17 +120,19 @@ function displaySoulCards(soulCards) {
             ✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧✦✧
             `;
 
-            const confirmationElement = document.createElement('div');
-            confirmationElement.classList.add('confirmation-message');
-            confirmationElement.innerHTML = `<pre>${confirmationMessage}</pre>`;
-            soulCardElement.appendChild(confirmationElement);
+            const overlay = document.createElement('div');
+            overlay.classList.add('overlay');
+            overlay.innerHTML = `<pre>${confirmationMessage}</pre>`;
+            soulCardElement.appendChild(overlay);
 
-            // Remove the judgment buttons
-            const buttonContainer = soulCardElement.querySelector('.judgment-buttons');
-            buttonContainer.remove();
+            // Add animation classes
+            soulCardElement.classList.add('fade-out');
+            overlay.classList.add('fade-in');
 
-            // Remove the soul card after a delay
-            setTimeout(() => {                soulCardElement.remove();
+            // Remove the soul card and overlay after the animation ends
+            setTimeout(() => {
+                soulCardElement.remove();
+                overlay.remove();
             }, 2000);
         });
     });
