@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Heaven",
+        "description": "A serene realm of eternal bliss and reward for virtuous souls.",
+        "karmaThreshold": 100
+    },
+    {
+        "name": "Purgatory",
+        "description": "A realm of reflection and purification, where souls confront their past and strive for redemption.",
+        "karmaThreshold": 50
+    },
+    {
+        "name": "Hell",
+        "description": "A realm of torment and suffering, where wicked souls face the consequences of their actions.",
+        "karmaThreshold": 0
+    }
+]
