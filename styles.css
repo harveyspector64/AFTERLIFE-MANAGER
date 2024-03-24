@@ -57,6 +57,9 @@ body {
     white-space: pre;
     padding: 10px;
     margin-bottom: 20px;
+    border: 2px solid #0f0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #0f0;
 }
 
 .judgment-buttons {
@@ -79,14 +82,17 @@ body {
 
 .heaven-button {
     color: #00ff00;
+    text-shadow: 0 0 5px #00ff00;
 }
 
 .purgatory-button {
     color: #ffff00;
+    text-shadow: 0 0 5px #ffff00;
 }
 
 .hell-button {
     color: #ff0000;
+    text-shadow: 0 0 5px #ff0000;
 }
 
 .judgment-button:hover {
@@ -106,9 +112,10 @@ body {
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     z-index: 9999;
-    max-width: 80%;
+    max-width: 100%;
     overflow-wrap: break-word;
     word-wrap: break-word;
     hyphens: auto;
     text-align: center;
+    border: 2px solid #0f0;
 }
