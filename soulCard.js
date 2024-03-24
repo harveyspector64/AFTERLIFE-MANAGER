@@ -1,6 +1,7 @@
 // Function to generate a random soul card
-function generateSoulCard(traits, virtues, sins) {
-    const firstName = getRandomItem(firstNames);
+function generateSoulCard(traits, virtues, sins, maleFirstNames, femaleFirstNames, lastNames) {
+    const gender = Math.random() < 0.5 ? 'male' : 'female';
+    const firstName = gender === 'male' ? getRandomItem(maleFirstNames) : getRandomItem(femaleFirstNames);
     const lastName = getRandomItem(lastNames);
     const age = getRandomNumber(18, 100);
     const trait1 = getRandomItem(traits);
@@ -11,6 +12,7 @@ function generateSoulCard(traits, virtues, sins) {
     return {
         firstName,
         lastName,
+        gender,
         age,
         traits: [trait1, trait2],
         virtue,
