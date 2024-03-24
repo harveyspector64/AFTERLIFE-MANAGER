@@ -50,41 +50,25 @@ body {
 }
 
 .soul-card {
-    background-color: #222;
-    border-radius: 5px;
-    padding: 20px;
+    background-color: #000;
+    color: #0f0;
+    font-family: monospace;
+    white-space: pre;
+    padding: 10px;
     margin-bottom: 20px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.soul-card h3 {
-    font-size: 24px;
-    margin-bottom: 10px;
-}
-
-.soul-card p {
-    font-size: 18px;
-    margin-bottom: 5px;
 }
 
 .judgment-buttons {
-    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
 }
 
 .judgment-button {
-    padding: 10px 20px;
-    font-size: 18px;
-    font-family: 'Cinzel', serif;
-    background-color: #8B0000;
-    color: #fff;
-    border: none;
     cursor: pointer;
-    margin: 5px;
-    border-radius: 5px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    transition: background-color 0.3s;
+    user-select: none;
 }
 
 .judgment-button:hover {
-    background-color: #B22222;
+    color: #ff0;
 }
