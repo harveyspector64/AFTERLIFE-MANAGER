@@ -116,6 +116,20 @@ function displaySoulCards(soulCards) {
     });
 }
 
+// Function to display the player's total score
+function displayScore() {
+    const scoreElement = document.createElement('div');
+    scoreElement.classList.add('score-display');
+    scoreElement.textContent = `Your Score: ${playerScore}`;
+    gameContainer.appendChild(scoreElement);
+    
+    // Proceed to the realm management phase after a delay
+    setTimeout(() => {
+        scoreElement.remove();
+        showRealmStatus();
+    }, 2000);
+}
+
 // Function to judge a soul and send them to a realm
 function judgeSoul(soulCardElement, realm) {
     const soulName = soulCardElement.querySelector('h3').textContent;
