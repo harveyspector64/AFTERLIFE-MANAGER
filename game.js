@@ -46,6 +46,13 @@ async function gameLoop() {
     // Check if the player wants to continue
     const continueGame = await promptContinue();
     if (continueGame) {
+        // Clear the soul card container
+        soulCardContainer.innerHTML = '';
+        
+        // Generate new soul cards
+        await initializeGame();
+        
+        // Continue the game loop
         await gameLoop();
     } else {
         showGameOver();
@@ -185,6 +192,13 @@ function showRealmStatus() {
         `;
         realmStatusContainer.innerHTML = realmStatus;
         
+        resolve();
+    });
+}
+
+// Function to prompt the player to continue or quit
+function promptContinue() {
+    return new Promise(resolve => {
         // Add event listener to the continue button
         continueButton.addEventListener('click', () => {
             // Hide the realm status screen and show the game screen
@@ -193,14 +207,6 @@ function showRealmStatus() {
             
             resolve(true);
         });
-    });
-}
-
-// Function to prompt the player to continue or quit
-function promptContinue() {
-    return new Promise(resolve => {
-        // TODO: Implement the logic to handle quitting the game
-        resolve(true);
     });
 }
 
