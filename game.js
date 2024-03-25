@@ -130,6 +130,18 @@ function displayScore() {
     }, 2000);
 }
 
+// Function to generate a new set of soul cards
+function generateNewSoulCards() {
+    soulCards = []; // Clear the existing soul cards array
+    
+    for (let i = 0; i < 5; i++) {
+        const soulCard = generateSoulCard(traits, virtues, sins, maleFirstNames, femaleFirstNames, lastNames);
+        soulCards.push(soulCard);
+    }
+    
+    displaySoulCards(soulCards);
+}
+
 // Function to judge a soul and send them to a realm
 function judgeSoul(soulCardElement, realm) {
     const soulName = soulCardElement.querySelector('h3').textContent;
