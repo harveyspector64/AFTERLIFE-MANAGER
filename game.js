@@ -20,7 +20,6 @@ mainMenu.style.display = 'block';
 startButton.addEventListener('click', startGame);
 loadButton.addEventListener('click', loadGame);
 settingsButton.addEventListener('click', openSettings);
-continueButton.addEventListener('click', continueGame);
 
 // Function to start a new game
 async function startGame() {
