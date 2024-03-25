@@ -97,40 +97,72 @@ function displaySoulCards(soulCards) {
         soulCardElement.appendChild(buttonContainer);
         soulCardContainer.appendChild(soulCardElement);
 
-        // Add event listeners to judgment buttons
-        const judgmentButtons = soulCardElement.querySelectorAll('.judgment-button');
-        judgmentButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const realm = button.dataset.realm;
-                judgeSoul(soulCardElement, realm);
+    // Add event listeners to judgment buttons
+    const judgmentButtons = soulCardElement.querySelectorAll('.judgment-button');
+    judgmentButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const realm = button.dataset.realm;
+            judgeSoul(soulCardElement, realm);
 
-                // Display judgment confirmation message
-                const soulName = soulCardElement.querySelector('pre').textContent.trim().split('\n')[6].trim();
-                const confirmationMessage = `
+            // Display judgment confirmation message
+            const soulName = soulCardElement.querySelector('pre').textContent.trim().split('\n')[5].trim();
+            let confirmationMessage = '';
+            let confirmationColor = '';
+
+            if (realm === 'Heaven') {
+                confirmationMessage = `
                 ┌───────────────────────────────────────────────┐
                 │                                               │
-                │   The soul of ${soulName} has been judged     │
-                │   and sentenced to the realm of ${realm}.     │
+                │   The soul of ${soulName} has ascended to     │
+                │   the heavenly realm! ✨👼                     │
                 │                                               │
-                │   ✧✦ May their eternal fate be sealed ✦✧     │
-                │      in the annals of cosmic justice.        │
+                │   May their eternal bliss be forever sealed   │
+                │   in the divine embrace of the cosmos. 🙏✨   │
                 │                                               │
                 └───────────────────────────────────────────────┘
                 `;
+                confirmationColor = '#00ff00';
+            } else if (realm === 'Purgatory') {
+                confirmationMessage = `
+                ┌───────────────────────────────────────────────┐
+                │                                               │
+                │   The soul of ${soulName} has been sent to    │
+                │   purgatory for purification. 🔥🌿             │
+                │                                               │
+                │   May their journey of atonement lead to      │
+                │   spiritual growth and redemption. 🙏🔥        │
+                │                                               │
+                └───────────────────────────────────────────────┘
+                `;
+                confirmationColor = '#ffff00';
+            } else if (realm === 'Hell') {
+                confirmationMessage = `
+                ┌───────────────────────────────────────────────┐
+                │                                               │
+                │   The soul of ${soulName} has been condemned  │
+                │   to the fiery depths of hell! 🔥😈            │
+                │                                               │
+                │   May their eternal torment serve as a        │
+                │   reminder of the consequences of sin. 🙏🔥   │
+                │                                               │
+                └───────────────────────────────────────────────┘
+                `;
+                confirmationColor = '#ff0000';
+            }
 
-                const confirmationElement = document.createElement('div');
-                confirmationElement.classList.add('confirmation-message');
-                confirmationElement.innerHTML = `<pre>${confirmationMessage}</pre>`;
-                soulCardElement.appendChild(confirmationElement);
+            const confirmationElement = document.createElement('div');
+            confirmationElement.classList.add('confirmation-message');
+            confirmationElement.style.color = confirmationColor;
+            confirmationElement.innerHTML = `<pre>${confirmationMessage}</pre>`;
+            soulCardElement.appendChild(confirmationElement);
 
-                // Hide the judgment buttons
-                buttonContainer.style.display = 'none';
+            // Hide the judgment buttons
+            buttonContainer.style.display = 'none';
 
-                // Remove the soul card after a delay
-                setTimeout(() => {
-                    soulCardElement.remove();
-                }, 2000);
-            });
+            // Remove the soul card after a delay
+            setTimeout(() => {
+                soulCardElement.remove();
+            }, 2000);
         });
     });
 }
