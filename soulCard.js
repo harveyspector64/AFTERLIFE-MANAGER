@@ -50,9 +50,7 @@ function generateSoulCardASCII(soulCard) {
     ✦                                                                    ✦
     ✧        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░         ✧
     ✦        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░         ✦
-    ✧        ░░                                                ░░         ✧
-    ✦        ░░    ${soulCard.firstName.toUpperCase()} ${soulCard.lastName.toUpperCase()}    ░░         ✦
-    ✧        ░░                                                ░░         ✧
+    ✧        ░░   ${soulCard.firstName.toUpperCase()} ${soulCard.lastName.toUpperCase()}   ░░         ✧
     ✦        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░         ✦
     ✧        ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░         ✧
     ✦                                                                    ✦
