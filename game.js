@@ -119,12 +119,35 @@ function displaySoulCards(soulCards) {
 // Function to judge a soul and send them to a realm
 function judgeSoul(soulCardElement, realm) {
     const soulName = soulCardElement.querySelector('h3').textContent;
+    const soulKarmaScore = parseInt(soulCardElement.querySelector('.karma-score').textContent);
+    
+    let points = 0;
+    if (realm === 'Heaven' && soulKarmaScore >= 80) {
+        points = 100;
+    } else if (realm === 'Purgatory' && soulKarmaScore >= 40 && soulKarmaScore < 80) {
+        points = 50;
+    } else if (realm === 'Hell' && soulKarmaScore < 40) {
+        points = 25;
+    }
+    
+    // Add the earned points to the player's total score
+    playerScore += points;
+    
     console.log(`Judging soul: ${soulName}`);
     console.log(`Sending soul to ${realm}`);
-
-    // TODO: Update the game state based on the judgment
-    // - Remove the judged soul card from the list
-    // - Update the realm's population and karma balance
-    // - Check for any realm-specific events or consequences
-    // - Proceed to the next soul card or end the judgment phase
+    console.log(`Points earned: ${points}`);
+    
+    // Remove the judged soul card from the array
+    const index = soulCards.findIndex(card => card.name === soulName);
+    if (index !== -1) {
+        soulCards.splice(index, 1);
+    }
+    
+    // Remove the soul card element from the DOM
+    soulCardElement.remove();
+    
+    // Check if all soul cards have been judged
+    if (soulCards.length === 0) {
+        displayScore();
+    }
 }
