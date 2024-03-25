@@ -105,10 +105,9 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #000;
-    color: #0f0;
     font-family: monospace;
     white-space: pre-wrap;
-    padding: 10px;
+    padding: 1em;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
     z-index: 9999;
@@ -117,5 +116,12 @@ body {
     word-wrap: break-word;
     hyphens: auto;
     text-align: left;
-    border: 2px solid #0f0;
+    border: 2px solid;
+    font-size: 1em;
+}
+
+@media screen and (max-width: 600px) {
+    .confirmation-message {
+        font-size: 0.8em;
+    }
 }
