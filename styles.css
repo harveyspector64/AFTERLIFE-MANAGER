@@ -68,12 +68,6 @@ body {
     margin-bottom: 5px;
 }
 
-.judgment-buttons {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-}
-
 .judgment-button {
     padding: 10px 20px;
     font-size: 18px;
@@ -86,15 +80,15 @@ body {
 }
 
 .heaven-button {
-    background-color: #00ff00;
+    background-color: #6a5acd; /* Muted purple */
 }
 
 .purgatory-button {
-    background-color: #ffff00;
+    background-color: #a0522d; /* Muted brown */
 }
 
 .hell-button {
-    background-color: #ff0000;
+    background-color: #8b0000; /* Dark red */
 }
 
 .judgment-button:hover {
