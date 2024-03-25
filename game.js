@@ -33,22 +33,24 @@ async function startGame() {
     soulCards = [];
     
     // Start the game loop
-    while (true) {
-        // Judging Phase
-        await initializeGame();
-        
-        // Realm Management Phase
-        await showRealmStatus();
-        
-        // Check if the player wants to continue
-        const continueGame = await promptContinue();
-        if (!continueGame) {
-            break;
-        }
-    }
+    await gameLoop();
+}
+
+// Function to handle the game loop
+async function gameLoop() {
+    // Judging Phase
+    await initializeGame();
     
-    // Game Over
-    showGameOver();
+    // Realm Management Phase
+    await showRealmStatus();
+    
+    // Check if the player wants to continue
+    const continueGame = await promptContinue();
+    if (continueGame) {
+        await gameLoop();
+    } else {
+        showGameOver();
+    }
 }
 
 // Function to load a saved game
@@ -171,23 +173,31 @@ function displayScore() {
 
 // Function to show the realm status screen
 function showRealmStatus() {
-    // Hide the game screen and show the realm status screen
-    gameScreen.style.display = 'none';
-    document.getElementById('realm-status-screen').style.display = 'block';
-    
-    // TODO: Implement the logic to display the realm status and consequences
-    const realmStatus = `
-        <p class="realm-status">Heaven: Balanced</p>
-        <p class="realm-status">Purgatory: Slightly Overcrowded</p>
-        <p class="realm-status">Hell: Overcrowded</p>
-    `;
-    realmStatusContainer.innerHTML = realmStatus;
+    return new Promise(resolve => {
+        // Hide the game screen and show the realm status screen
+        gameScreen.style.display = 'none';
+        document.getElementById('realm-status-screen').style.display = 'block';
+        
+        // TODO: Implement the logic to display the realm status and consequences
+        const realmStatus = `
+            <p class="realm-status">Heaven: Balanced</p>
+            <p class="realm-status">Purgatory: Slightly Overcrowded</p>
+            <p class="realm-status">Hell: Overcrowded</p>
+        `;
+        realmStatusContainer.innerHTML = realmStatus;
+        
+        resolve();
+    });
 }
 
 // Function to prompt the player to continue or quit
 function promptContinue() {
     return new Promise(resolve => {
         continueButton.onclick = () => {
+            // Hide the realm status screen and show the game screen
+            document.getElementById('realm-status-screen').style.display = 'none';
+            gameScreen.style.display = 'block';
+            
             resolve(true);
         };
         
