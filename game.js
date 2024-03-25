@@ -8,7 +8,7 @@ const loadButton = document.getElementById('load-button');
 const settingsButton = document.getElementById('settings-button');
 const soulCardContainer = document.getElementById('soul-card-container');
 const realmStatusContainer = document.getElementById('realm-status-container');
-const continueButton = document.getElementById('continue-button');
+const realmStatusButton = document.getElementById('realm-status-button');
 
 let playerScore = 0;
 let soulCards = [];
@@ -20,6 +20,7 @@ mainMenu.style.display = 'block';
 startButton.addEventListener('click', startGame);
 loadButton.addEventListener('click', loadGame);
 settingsButton.addEventListener('click', openSettings);
+realmStatusButton.addEventListener('click', toggleRealmStatus);
 
 // Function to start a new game
 async function startGame() {
@@ -31,32 +32,8 @@ async function startGame() {
     playerScore = 0;
     soulCards = [];
     
-    // Start the game loop
-    await gameLoop();
-}
-
-// Function to handle the game loop
-async function gameLoop() {
-    // Judging Phase
+    // Generate initial soul cards
     await initializeGame();
-    
-    // Realm Management Phase
-    await showRealmStatus();
-    
-    // Check if the player wants to continue
-    const continueGame = await promptContinue();
-    if (continueGame) {
-        // Clear the soul card container
-        soulCardContainer.innerHTML = '';
-        
-        // Generate new soul cards
-        await initializeGame();
-        
-        // Continue the game loop
-        await gameLoop();
-    } else {
-        showGameOver();
-    }
 }
 
 // Function to load a saved game
@@ -160,6 +137,7 @@ function judgeSoul(soulCardElement, realm) {
     // Check if all soul cards have been judged
     if (soulCards.length === 0) {
         displayScore();
+        generateNewSoulCards();
     }
 }
 
@@ -170,16 +148,24 @@ function displayScore() {
     scoreElement.textContent = `Your Score: ${playerScore}`;
     gameContainer.appendChild(scoreElement);
     
-    // Proceed to the realm management phase after a delay
+    // Remove the score display after a delay
     setTimeout(() => {
         scoreElement.remove();
-        showRealmStatus();
     }, 2000);
 }
 
-// Function to show the realm status screen
-function showRealmStatus() {
-    return new Promise(resolve => {
+// Function to generate a new set of soul cards
+function generateNewSoulCards() {
+    initializeGame();
+}
+
+// Function to toggle the realm status screen
+function toggleRealmStatus() {
+    if (gameScreen.style.display === 'none') {
+        // Hide the realm status screen and show the game screen
+        document.getElementById('realm-status-screen').style.display = 'none';
+        gameScreen.style.display = 'block';
+    } else {
         // Hide the game screen and show the realm status screen
         gameScreen.style.display = 'none';
         document.getElementById('realm-status-screen').style.display = 'block';
@@ -191,32 +177,5 @@ function showRealmStatus() {
             <p class="realm-status">Hell: Overcrowded</p>
         `;
         realmStatusContainer.innerHTML = realmStatus;
-        
-        resolve();
-    });
-}
-
-// Function to prompt the player to continue or quit
-function promptContinue() {
-    return new Promise(resolve => {
-        // Add event listener to the continue button
-        continueButton.addEventListener('click', () => {
-            // Hide the realm status screen and show the game screen
-            document.getElementById('realm-status-screen').style.display = 'none';
-            gameScreen.style.display = 'block';
-            
-            resolve(true);
-        });
-    });
-}
-
-// Function to show the game over screen
-function showGameOver() {
-    // Hide the realm status screen and show the game over screen
-    document.getElementById('realm-status-screen').style.display = 'none';
-    document.getElementById('game-over-screen').style.display = 'block';
-    
-    // Display the final score
-    const finalScoreElement = document.getElementById('final-score');
-    finalScoreElement.textContent = playerScore;
+    }
 }
