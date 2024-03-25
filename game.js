@@ -66,35 +66,22 @@ function displaySoulCards(soulCards) {
     soulCardContainer.innerHTML = '';
 
     soulCards.forEach(soulCard => {
-        const soulCardASCII = generateSoulCardASCII(soulCard);
         const soulCardElement = document.createElement('div');
         soulCardElement.classList.add('soul-card');
-        soulCardElement.innerHTML = `<pre>${soulCardASCII}</pre>`;
-
-        // Create separate button elements
-        const buttonContainer = document.createElement('div');
-        buttonContainer.classList.add('judgment-buttons');
-
-        const heavenButton = document.createElement('button');
-        heavenButton.classList.add('judgment-button', 'heaven-button');
-        heavenButton.dataset.realm = 'Heaven';
-        heavenButton.innerHTML = '<pre>[ Heaven ]</pre>';
-
-        const purgatoryButton = document.createElement('button');
-        purgatoryButton.classList.add('judgment-button', 'purgatory-button');
-        purgatoryButton.dataset.realm = 'Purgatory';
-        purgatoryButton.innerHTML = '<pre>[ Purgatory ]</pre>';
-
-        const hellButton = document.createElement('button');
-        hellButton.classList.add('judgment-button', 'hell-button');
-        hellButton.dataset.realm = 'Hell';
-        hellButton.innerHTML = '<pre>[ Hell ]</pre>';
-
-        buttonContainer.appendChild(heavenButton);
-        buttonContainer.appendChild(purgatoryButton);
-        buttonContainer.appendChild(hellButton);
-
-        soulCardElement.appendChild(buttonContainer);
+        soulCardElement.innerHTML = `
+            <h3>${soulCard.firstName} ${soulCard.lastName}</h3>
+            <p>Gender: ${soulCard.gender}</p>
+            <p>Age: ${soulCard.age}</p>
+            <p>Traits: ${soulCard.traits.join(', ')}</p>
+            <p>Virtue: ${soulCard.virtue.name} (${soulCard.virtue.score})</p>
+            <p>Sin: ${soulCard.sin.name} (${soulCard.sin.score})</p>
+            <p>Total Karma: ${soulCard.totalKarma}</p>
+            <div class="judgment-buttons">
+                <button class="judgment-button heaven-button" data-realm="Heaven">Heaven</button>
+                <button class="judgment-button purgatory-button" data-realm="Purgatory">Purgatory</button>
+                <button class="judgment-button hell-button" data-realm="Hell">Hell</button>
+            </div>
+        `;
         soulCardContainer.appendChild(soulCardElement);
 
         // Add event listeners to judgment buttons
@@ -105,58 +92,19 @@ function displaySoulCards(soulCards) {
                 judgeSoul(soulCardElement, realm);
 
                 // Display judgment confirmation message
-                const soulName = soulCardElement.querySelector('pre').textContent.trim().split('\n')[5].trim();
-                let confirmationMessage = '';
-                let confirmationColor = '';
-
-                if (realm === 'Heaven') {
-                    confirmationMessage = `
-                    ┌───────────────────────────────────────────────┐
-                    │                                               │
-                    │   ${soulName}'s soul has ascended to the      │
-                    │   heavenly realm! ✨👼                         │
-                    │                                               │
-                    │   May their eternal bliss be forever sealed   │
-                    │   in the divine embrace of the cosmos. 🙏✨   │
-                    │                                               │
-                    └───────────────────────────────────────────────┘
-                    `;
-                    confirmationColor = '#00ff00';
-                } else if (realm === 'Purgatory') {
-                    confirmationMessage = `
-                    ┌───────────────────────────────────────────────┐
-                    │                                               │
-                    │   ${soulName}'s soul has been sent to         │
-                    │   purgatory for purification. 🔥🌿             │
-                    │                                               │
-                    │   May their journey of atonement lead to      │
-                    │   spiritual growth and redemption. 🙏🔥        │
-                    │                                               │
-                    └───────────────────────────────────────────────┘
-                    `;
-                    confirmationColor = '#ffff00';
-                } else if (realm === 'Hell') {
-                    confirmationMessage = `
-                    ┌───────────────────────────────────────────────┐
-                    │                                               │
-                    │   ${soulName}'s soul has been condemned to    │
-                    │   the fiery depths of hell! 🔥😈               │
-                    │                                               │
-                    │   May their eternal torment serve as a        │
-                    │   reminder of the consequences of sin. 🙏🔥   │
-                    │                                               │
-                    └───────────────────────────────────────────────┘
-                    `;
-                    confirmationColor = '#ff0000';
-                }
+                const soulName = soulCard.firstName + ' ' + soulCard.lastName;
+                const confirmationMessage = `
+                    <p>The soul of ${soulName} has been judged and sentenced to the realm of ${realm}.</p>
+                    <p>May their eternal fate be sealed in the annals of cosmic justice.</p>
+                `;
 
                 const confirmationElement = document.createElement('div');
                 confirmationElement.classList.add('confirmation-message');
-                confirmationElement.style.color = confirmationColor;
-                confirmationElement.innerHTML = `<pre>${confirmationMessage}</pre>`;
+                confirmationElement.innerHTML = confirmationMessage;
                 soulCardElement.appendChild(confirmationElement);
 
                 // Hide the judgment buttons
+                const buttonContainer = soulCardElement.querySelector('.judgment-buttons');
                 buttonContainer.style.display = 'none';
 
                 // Remove the soul card after a delay
@@ -170,7 +118,7 @@ function displaySoulCards(soulCards) {
 
 // Function to judge a soul and send them to a realm
 function judgeSoul(soulCardElement, realm) {
-    const soulName = soulCardElement.querySelector('pre').textContent.trim().split('\n')[5].trim();
+    const soulName = soulCardElement.querySelector('h3').textContent;
     console.log(`Judging soul: ${soulName}`);
     console.log(`Sending soul to ${realm}`);
 
