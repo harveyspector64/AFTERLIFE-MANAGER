@@ -185,22 +185,22 @@ function showRealmStatus() {
         `;
         realmStatusContainer.innerHTML = realmStatus;
         
-        resolve();
+        // Add event listener to the continue button
+        continueButton.addEventListener('click', () => {
+            // Hide the realm status screen and show the game screen
+            document.getElementById('realm-status-screen').style.display = 'none';
+            gameScreen.style.display = 'block';
+            
+            resolve(true);
+        });
     });
 }
 
 // Function to prompt the player to continue or quit
 function promptContinue() {
     return new Promise(resolve => {
-        continueButton.onclick = () => {
-            // Hide the realm status screen and show the game screen
-            document.getElementById('realm-status-screen').style.display = 'none';
-            gameScreen.style.display = 'block';
-            
-            resolve(true);
-        };
-        
         // TODO: Implement the logic to handle quitting the game
+        resolve(true);
     });
 }
 
