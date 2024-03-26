@@ -9,6 +9,7 @@ const settingsButton = document.getElementById('settings-button');
 const soulCardContainer = document.getElementById('soul-card-container');
 const realmStatusContainer = document.getElementById('realm-status-container');
 const realmStatusButton = document.getElementById('realm-status-button');
+const backButton = document.getElementById('back-button');
 
 let divineFavor = 0;
 let maxDivineFavor = 100;
@@ -26,7 +27,8 @@ mainMenu.style.display = 'block';
 startButton.addEventListener('click', startGame);
 loadButton.addEventListener('click', loadGame);
 settingsButton.addEventListener('click', openSettings);
-realmStatusButton.addEventListener('click', toggleRealmStatus);
+realmStatusButton.addEventListener('click', showRealmStatus);
+backButton.addEventListener('click', hideRealmStatus);
 
 // Function to start a new game
 async function startGame() {
@@ -41,10 +43,6 @@ async function startGame() {
     
     // Generate initial soul cards
     await initializeGame();
-    
-    // Update the Divine Favor and realm status displays
-    updateDivineFavorDisplay();
-    updateRealmStatusDisplay();
 }
 
 // Function to load a saved game
@@ -90,12 +88,8 @@ function displaySoulCards(soulCards) {
         soulCardElement.classList.add('soul-card');
         soulCardElement.innerHTML = `
             <h3>${soulCard.firstName} ${soulCard.lastName}</h3>
-            <p>Gender: ${soulCard.gender}</p>
-            <p>Age: ${soulCard.age}</p>
-            <p>Traits: ${soulCard.traits.join(', ')}</p>
-            <p>Virtue: ${soulCard.virtue.name} (${soulCard.virtue.score})</p>
-            <p>Sin: ${soulCard.sin.name} (${soulCard.sin.score})</p>
-            <p>Total Karma: <span class="karma-score">${soulCard.totalKarma}</span></p>
+            <p>Virtue: ${soulCard.virtue.name}</p>
+            <p>Sin: ${soulCard.sin.name}</p>
             <div class="judgment-buttons">
                 <button class="judgment-button heaven-button" data-realm="Heaven">Heaven</button>
                 <button class="judgment-button purgatory-button" data-realm="Purgatory">Purgatory</button>
@@ -129,39 +123,40 @@ function judgeSoul(soulCardElement, realm) {
     divineFavor += divineFavorChange;
     divineFavor = Math.max(0, Math.min(divineFavor, maxDivineFavor));
     
-    // Display feedback to the player
-    const feedbackElement = document.createElement('div');
-    feedbackElement.classList.add('feedback');
-    feedbackElement.innerHTML = `
-        <p>Judged soul: ${soulName}</p>
-        <p>Sent to: ${realm}</p>
-        <p>Divine Favor: ${getFavorMessage(divineFavorChange)}</p>
-    `;
-    gameContainer.appendChild(feedbackElement);
+    // Display judgment message
+    const judgmentMessage = getJudgmentMessage(soulName, realm);
+    const judgmentElement = document.createElement('div');
+    judgmentElement.classList.add('judgment-message');
+    judgmentElement.innerHTML = `<p>${judgmentMessage}</p>`;
+    soulCardElement.appendChild(judgmentElement);
     
-    // Remove the feedback after a delay
+    // Remove the judgment buttons
+    const judgmentButtons = soulCardElement.querySelector('.judgment-buttons');
+    judgmentButtons.remove();
+    
+    // Remove the soul card and judgment message after a delay
     setTimeout(() => {
-        feedbackElement.remove();
+        soulCardElement.remove();
     }, 2000);
     
-    // Remove the judged soul card from the array and DOM
+    // Remove the judged soul card from the array
     const index = soulCards.findIndex(card => card.firstName + ' ' + card.lastName === soulName);
     if (index !== -1) {
         soulCards.splice(index, 1);
     }
-    soulCardElement.remove();
-    
-    // Update the Divine Favor and realm status displays
-    updateDivineFavorDisplay();
-    updateRealmStatusDisplay();
     
     // Check if all soul cards have been judged
     if (soulCards.length === 0) {
         // Trigger realm events or challenges based on balance
         triggerRealmEvents();
         
-        // Generate new soul cards
-        generateNewSoulCards();
+        // Show the realm status screen
+        showRealmStatus();
+        
+        // Generate new soul cards after a delay
+        setTimeout(() => {
+            generateNewSoulCards();
+        }, 3000);
     }
 }
 
@@ -182,15 +177,29 @@ function calculateDivineFavorChange(soulKarmaScore, realm) {
     return favorChange;
 }
 
-// Function to get a message based on the change in Divine Favor
-function getFavorMessage(favorChange) {
-    if (favorChange > 0) {
-        return 'Increased';
-    } else if (favorChange < 0) {
-        return 'Decreased';
-    } else {
-        return 'Unchanged';
-    }
+// Function to get the judgment message based on the soul and realm
+function getJudgmentMessage(soulName, realm) {
+    const messages = {
+        Heaven: [
+            `By the grace of the Divine, ${soulName} shall ascend to the celestial paradise of Heaven.`,
+            `The virtuous deeds of ${soulName} have earned them a place among the angels in Heaven.`,
+            `${soulName}'s soul, pure and true, shall find eternal rest in the hallowed halls of Heaven.`
+        ],
+        Purgatory: [
+            `${soulName} shall endure the trials of Purgatory to atone for their earthly transgressions.`,
+            `In the crucible of Purgatory, ${soulName}'s soul shall be refined and purified.`,
+            `${soulName} is consigned to the limbo of Purgatory, where they shall reflect upon their mortal deeds.`
+        ],
+        Hell: [
+            `By the decree of the Divine Judge, ${soulName} shall be consigned to the eternal flames of Hell for their mortal transgressions.`,
+            `The wicked deeds of ${soulName} have earned them a place among the damned in Hell.`,
+            `${soulName}'s soul, blackened by sin, shall suffer the torments of Hell for all eternity.`
+        ]
+    };
+    
+    const realmMessages = messages[realm];
+    const randomIndex = Math.floor(Math.random() * realmMessages.length);
+    return realmMessages[randomIndex];
 }
 
 // Function to trigger realm events or challenges based on balance
@@ -210,15 +219,9 @@ function triggerRealmEvents() {
     }
 }
 
-// Function to update the Divine Favor display
-function updateDivineFavorDisplay() {
-    const divineFavorElement = document.getElementById('divine-favor');
-    divineFavorElement.textContent = `Divine Favor: ${divineFavor}/${maxDivineFavor}`;
-}
-
 // Function to update the realm status display
 function updateRealmStatusDisplay() {
-    const realmStatusElement = document.getElementById('realm-status');
+    const realmStatusElement = document.getElementById('realm-status-container');
     let realmStatusHTML = '';
     
     for (const realm in realmBalance) {
@@ -251,18 +254,30 @@ function resetRealmBalance() {
     realmBalance.hell.karma = 0;
 }
 
-// Function to toggle the realm status screen
-function toggleRealmStatus() {
-    if (gameScreen.style.display === 'none') {
-        // Hide the realm status screen and show the game screen
-        document.getElementById('realm-status-screen').style.display = 'none';
-        gameScreen.style.display = 'block';
-    } else {
-        // Hide the game screen and show the realm status screen
-        gameScreen.style.display = 'none';
-        document.getElementById('realm-status-screen').style.display = 'block';
-        
-        // Update the realm status display
-        updateRealmStatusDisplay();
-    }
+// Function to show the realm status screen
+function showRealmStatus() {
+    // Hide the game screen and show the realm status screen
+    gameScreen.style.display = 'none';
+    document.getElementById('realm-status-screen').style.display = 'block';
+    
+    // Update the realm status display
+    updateRealmStatusDisplay();
+    
+    // Display a message or tutorial prompt
+    const tutorialMessage = `
+        <p>The fate of the afterlife rests in your hands, Divine Judge.</p>
+        <p>Monitor the balance of the realms and the growth of your Divine Favor.</p>
+        <p>Your judgments shall shape the destiny of souls and the cosmos itself.</p>
+    `;
+    const tutorialElement = document.createElement('div');
+    tutorialElement.classList.add('tutorial-message');
+    tutorialElement.innerHTML = tutorialMessage;
+    document.getElementById('realm-status-screen').appendChild(tutorialElement);
+}
+
+// Function to hide the realm status screen and return to the game screen
+function hideRealmStatus() {
+    // Hide the realm status screen and show the game screen
+    document.getElementById('realm-status-screen').style.display = 'none';
+    gameScreen.style.display = 'block';
 }
